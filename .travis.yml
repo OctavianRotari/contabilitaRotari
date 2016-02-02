@@ -7,4 +7,3 @@ script: npm test
 
 before_script:
     - npm install
-    - bower install
