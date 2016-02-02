@@ -29,7 +29,7 @@ describe('bills', function (){
       'name': 'Bezzi',
       'typeOfBill': 'credito',
       'numberOfBill': '2013',
-      'tota': '300.00',
+      'total': '300.00',
       'note': 'man',
       'methodOfPayment': 'Bonifico',
       'iva': '20.00',

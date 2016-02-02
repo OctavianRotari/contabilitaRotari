@@ -5,7 +5,7 @@ var BillSchema = new Schema({
   typeOfBill: String,
   numberOfBill: Number,
   date: { type: Date, default: Date.now },
-  tota: Number,
+  total: Number,
   note: String,
   methodOfPayment: String,
   iva: Number,
