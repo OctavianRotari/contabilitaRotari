@@ -50,8 +50,26 @@ describe('bills', function (){
     });
   });
 
-  it('should list specfic bill on Get /fatture/<id>', function (){
-
+  it('should list specfic bill on Get /fatture/<id>', function (done){
+    var newBill = new bill ({
+      'name': 'Feramenta',
+      'typeOfBill': 'credito',
+      'numberOfBill': '2013',
+      'total': '300.00',
+      'note': 'man',
+      'methodOfPayment': 'Bonifico',
+      'iva': '20.00',
+      'paid': '0'
+    });
+    newBill.save(function (err, data) {
+      chai.request(server)
+      .get('/fatture/' + data.id)
+      .end(function (err, res) {
+        res.should.have.status(200);
+        res.body.name.should.equal('Feramenta');
+        done();
+      });
+    });
   });
 
   it('should add a signle bill on POST  /fatture', function (done){

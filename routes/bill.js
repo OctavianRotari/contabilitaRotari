@@ -20,4 +20,13 @@ router.post ('/', function (req, res, next) {
   });
 });
 
+router.get ('/:id', function (req, res, next) {
+  Fatture.findById(req.params.id, function (err,fattura) {
+    if (err) {
+      return next(err);
+    }
+    res.json(fattura);
+  });
+});
+
 module.exports = router;

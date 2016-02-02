@@ -1,22 +1,31 @@
 var express = require('express');
 var router = express.Router();
-var Fatture = require('./../models/salary.js');
+var Salary = require('./../models/salary.js');
 
 router.get ('/', function (req, res, next) {
-  Fatture.find(function (err, fatture) {
+  Salary.find(function (err, salary) {
     if ( err ) {
       return next(err);
     }
-   res.json(fatture);
+   res.json(salary);
   });
 });
 
 router.post ('/', function (req, res, next) {
-  Fatture.create (req.body, function (err, fattura) {
+  Salary.create (req.body, function (err, salary) {
     if (err) {
       return next(err);
     }
-    res.json(fattura);
+    res.json(salary);
+  });
+});
+
+router.get ('/:id', function (req, res, next) {
+   Salary.findById(req.params.id, function (err, salary) {
+    if (err) {
+      return next(err);
+    }
+    res.json(salary);
   });
 });
 
