@@ -10,6 +10,6 @@ var BillSchema = new Schema({
   methodOfPayment: String,
   iva: Number,
   paid: Number
-}, { collection : 'bills' });
+},{ collection: 'bills' });
 
 module.exports = mongoose.model('bill', BillSchema);

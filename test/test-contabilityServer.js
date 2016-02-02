@@ -1,3 +1,6 @@
+// jscs:disable
+//jshint ignore: start
+
 process.env.NODE_ENV = 'test';
 
 var chai = require('chai');
