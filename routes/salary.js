@@ -29,4 +29,13 @@ router.get ('/:id', function (req, res, next) {
   });
 });
 
+router.put ('/:id', function (req, res, next) {
+  Salary.findByIdAndUpdate(req.params.id, req.body, function (err, salary) {
+    if (err) {
+      return next(err);
+    }
+    res.json(salary);
+  });
+});
+
 module.exports = router;
