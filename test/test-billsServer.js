@@ -7,7 +7,7 @@ var chai = require('chai');
 var chaiHttp = require('chai-http');
 var server = require('../app');
 var should = chai.should();
-var bill = require('../models/bill.js')
+var bill = require('../server/models/bill.js')
 
 chai.use(chaiHttp);
 

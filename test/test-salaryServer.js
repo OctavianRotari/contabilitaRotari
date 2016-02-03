@@ -7,7 +7,7 @@ var chai = require('chai');
 var chaiHttp = require('chai-http');
 var server = require('../app');
 var should = chai.should();
-var salary = require('../models/salary.js')
+var salary = require('../server/models/salary.js')
 
 chai.use(chaiHttp);
 

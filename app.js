@@ -4,10 +4,10 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var routes = require('./routes/index.js');
-var bill = require('./routes/bill.js');
-var salary = require('./routes/salary.js');
-var database = require('./config/database.js');
+var routes = require('./server/routes/index.js');
+var bill = require('./server/routes/bill.js');
+var salary = require('./server/routes/salary.js');
+var database = require('./server/config/database.js');
 var mongoose = require('mongoose');
 var app = express();
 
