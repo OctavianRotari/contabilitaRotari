@@ -38,4 +38,13 @@ router.put ('/:id', function (req, res, next) {
   });
 });
 
+router.delete('/:id', function (req, res, next) {
+  Fatture.findByIdAndRemove(req.params.id, req.body, function (err, fattura) {
+    if (err) {
+      return next(err);
+    }
+    res.json(fattura);
+  });
+});
+
 module.exports = router;

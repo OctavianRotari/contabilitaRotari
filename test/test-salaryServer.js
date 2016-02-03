@@ -135,7 +135,26 @@ describe('salary', function () {
     });
   });
 
-  it('should delete a single bill on delete  /fatturei/<id>', function (){
-
+  it('should delete a single bill on delete  /stipendi/<id>', function (done){
+    chai.request(server)
+    .get('/stipendi')
+    .end(function(err, res){
+      chai.request(server)
+      .delete('/stipendi/'+ res.body[0]._id)
+      .end(function(err, res){
+        res.should.have.status(200);
+        res.should.be.json;
+        res.body.should.have.property('_id');
+        res.body.should.have.property('name');
+        res.body.should.have.property('month');
+        res.body.should.have.property('paid');
+        res.body.should.have.property('total');
+        res.body.name.should.equal('Danu');
+        res.body.month.should.equal('Gennaio');
+        res.body.total.should.equal(200.00);
+        res.body.paid.should.equal(50);
+        done();
+      });
+    });
   });
 });

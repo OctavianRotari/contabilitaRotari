@@ -178,7 +178,33 @@ describe('bills', function (){
     });
   });
 
-  it('should delete a single bill on delete  /fatturei/<id>', function (){
-
+  it('should delete a single bill on delete  /fatturei/<id>', function (done){
+    chai.request(server)
+    .get('/fatture')
+    .end(function(err, res){
+      chai.request(server)
+      .delete('/fatture/'+ res.body[0]._id)
+      .end(function(err, res){
+        res.should.have.status(200);
+        res.should.be.json;
+        res.body.should.have.property('_id');
+        res.body.should.have.property('name');
+        res.body.should.have.property('typeOfBill');
+        res.body.should.have.property('note');
+        res.body.should.have.property('methodOfPayment');
+        res.body.should.have.property('iva');
+        res.body.should.have.property('paid');
+        res.body.should.have.property('total');
+        res.body.should.have.property('numberOfBill');
+        res.body.name.should.equal('PneusMarket');
+        res.body.typeOfBill.should.equal('credito');
+        res.body.numberOfBill.should.equal(2013);
+        res.body.total.should.equal(300.00);
+        res.body.note.should.equal('man');
+        res.body.methodOfPayment.should.equal('Bonifico');
+        res.body.iva.should.equal(20.00);
+        done();
+      });
+    });
   });
 });

@@ -38,4 +38,13 @@ router.put ('/:id', function (req, res, next) {
   });
 });
 
+router.delete('/:id', function (req, res, next) {
+  Salary.findByIdAndRemove(req.params.id, req.body, function (err, salary) {
+    if (err) {
+      return next(err);
+    }
+    res.json(salary);
+  });
+});
+
 module.exports = router;
