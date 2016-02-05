@@ -16,21 +16,25 @@ describe('salary', function () {
   salary.collection.drop();
 
   beforeEach(function (done){
-    var newSalary = new salary ({
-      'name': 'Danu',
-      'month': 'Gennaio',
-      'total': '200',
-      'paid': '50'
-    });
+    setTimeout(function(){
+      var newSalary = new salary ({
+        'name': 'Danu',
+        'month': 'Gennaio',
+        'total': '200',
+        'paid': '50'
+      });
 
-    newSalary.save(function (err, data){
-      done();
-    });
+      newSalary.save(function (err, data){
+        done();
+      });
+    }, 50);
   });
 
   afterEach(function (done){
-    salary.collection.drop();
-    done();
+    setTimeout(function(){
+      salary.collection.drop();
+      done();
+    }, 50);
   });
 
   it('shold list all the salary on Get /stipedi', function(done) {
