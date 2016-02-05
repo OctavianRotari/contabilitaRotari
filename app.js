@@ -22,7 +22,7 @@ mongoose.connect(database.mongoURI[app.settings.env], function (err) {
 
 // view engine setup
 app.set('views', path.join(__dirname, 'public/views'));
-app.set('view engine', 'html');
+app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
