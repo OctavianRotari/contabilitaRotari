@@ -5,7 +5,7 @@ process.env.NODE_ENV = "test"
 
 var chai = require('chai');
 var chaiHttp = require('chai-http');
-var server = require('../app');
+var server = require('../server');
 var should = chai.should();
 var salary = require('../server/models/salary.js')
 
