@@ -6,6 +6,6 @@ var SalarySchema = new Schema({
   date: { type: Date, default: Date.now },
   total: Number,
   paid: Number
-},{ collection: 'salaries' });
+});
 
 module.exports = mongoose.model('salary', SalarySchema);

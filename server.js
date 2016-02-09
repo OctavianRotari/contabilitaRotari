@@ -6,10 +6,15 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./server/routes/index.js');
 var bill = require('./server/routes/bill.js');
+var user = require('./server/routes/user.js');
 var salary = require('./server/routes/salary.js');
 var database = require('./server/config/database.js');
 var mongoose = require('mongoose');
 var app = express();
+//var hash = require('bcrypt-nodejs');
+var path = require('path');
+var passport = require('passport');
+var LocalStrategy = require('passport-local' ).Strategy;
 
 mongoose.connect(database.mongoURI[app.settings.env], function (err) {
   if (err) {
@@ -20,6 +25,14 @@ mongoose.connect(database.mongoURI[app.settings.env], function (err) {
   }
 });
 
+// user schema/model
+var User = require('./server/models/user.js');
+
+// configure passport
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 // view engine setup
 app.set('views', path.join(__dirname, 'public/views'));
 app.set('view engine', 'ejs');
@@ -29,10 +42,18 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(require('express-session')({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/user', user);
 app.use('/fatture', bill);
 app.use('/stipendi', salary);
 
