@@ -1,7 +1,7 @@
 <div class="col-md-4">
   <h1>Login</h1>
   <div ng-show="error" class="alert alert-danger">
-    <h1>{{errorMessage}}</h1>
+    <h2>{{errorMessage}}</h2>
   </div>
   <form class="form" ng-submit="login()">
     <div class="form-group">
@@ -13,7 +13,7 @@
         <input type="password" class="form-control" name="password" ng-model="loginForm.password" required>
       </div>
       <div>
-        <button type="submit" class="btn btn-default" ng-disabled="disabled">Login</button>
+        <button type="submit" name="login" class="btn btn-default" ng-disabled="disabled">Login</button>
       </div>
   </form>
 </div>

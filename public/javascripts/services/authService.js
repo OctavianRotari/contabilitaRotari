@@ -49,9 +49,8 @@ app.factory('AuthService',['$q', '$timeout', '$http', function ( $q, $timeout, $
   }
 
   function register( username, password ) {
-    var deferred = $q.deffer();
-
-    $http.get('/user/register', { username: username, password: password })
+    var deferred = $q.defer();
+    $http.post('/user/register', { username: username, password: password })
     .success( function (data, status) {
       if (status === 200 && data.status ) {
         user = true;
@@ -66,7 +65,6 @@ app.factory('AuthService',['$q', '$timeout', '$http', function ( $q, $timeout, $
     });
     return deferred.promise;
   }
-
   return ({
     isLoggedIn: isLoggedIn,
     getUserStatus: getUserStatus,

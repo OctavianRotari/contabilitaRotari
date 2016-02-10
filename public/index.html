@@ -8,10 +8,15 @@
     <script src="javascripts/main.js"></script>
     <script src="javascripts/controllers/homeController.js"></script>
     <script src="javascripts/controllers/loginController.js"></script>
+    <script src="javascripts/controllers/registerController.js"></script>
+    <script src="javascripts/controllers/logoutController.js"></script>
     <script src="javascripts/services/authService.js"></script>
   </head>
   <body>
-    <h1>Hello World</h1>
+    <h1>Contabilita</h1>
+    <div ng-controller="logoutController">
+      <a ng-click='logout()' class="btn btn-default">Logout</a>
+    </div>
     <div class="jumbotron">
       <div data-ng-view></div>
     </div>
