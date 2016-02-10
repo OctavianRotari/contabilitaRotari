@@ -70,7 +70,7 @@ describe('user', function () {
           user.collection.drop();
           done();
         }, 50);
-      });
+    });
     //beforeEach(function(done){
     //setTimeout(function () {
     //var newUser = new user ({

@@ -1,6 +1,6 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
+// var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -11,7 +11,7 @@ var salary = require('./server/routes/salary.js');
 var database = require('./server/config/database.js');
 var mongoose = require('mongoose');
 var app = express();
-//var hash = require('bcrypt-nodejs');
+// var hash = require('bcrypt-nodejs');
 var path = require('path');
 var passport = require('passport');
 var LocalStrategy = require('passport-local' ).Strategy;
