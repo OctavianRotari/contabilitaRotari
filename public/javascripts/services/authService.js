@@ -1,4 +1,4 @@
-app.factory('AuthService',['$q', '$timeout', '$http', function ( $q, $timeout, $http ) {
+app.factory('AuthService',['$q', '$timeout', '$http', '$cookieStore', function ( $q, $timeout, $http, $cookieStore ) {
   var user = null;
 
   function isLoggedIn() {
@@ -11,12 +11,27 @@ app.factory('AuthService',['$q', '$timeout', '$http', function ( $q, $timeout, $
   }
 
   function getUserStatus() {
-    return user;
+    // create a new instance of deferred
+    var deferred = $q.defer();
+    // send a get request to the server
+    $http.get('/user/auth')
+    // handle success
+    .success(function (data) {
+      user = true;
+      deferred.resolve();
+    })
+    // handle error
+    .error(function (data) {
+      user = false;
+      deferred.reject();
+    });
+    // return promise object
+    return deferred.promise;
   }
 
   function login(username, password) {
     var deferred = $q.defer();
-    $http.post('/user/login', { username: username, password: password })
+    $http.post('/user/login', { username: username, password: password, online: true })
     .success(function ( data, status ) {
       if ( status === 200 && data.status ) {
         user = true;

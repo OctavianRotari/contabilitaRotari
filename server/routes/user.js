@@ -26,6 +26,7 @@ router.post('/login', function (req, res) {
       if (err) {
         return res.status(500).json({ err: 'Could not log-in user' });
       }
+      user.online = true;
       res.status(200).json({ status:'Log in successful' });
     });
   })(req, res);
@@ -34,6 +35,13 @@ router.post('/login', function (req, res) {
 router.get('/logout', function (req, res) {
   req.logout();
   res.status(200).json({ status: 'Bye' });
+});
+
+router.get('/auth', function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.send(401);
 });
 
 module.exports = router;
