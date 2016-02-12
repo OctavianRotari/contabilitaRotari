@@ -30,7 +30,7 @@ router.get ('/:id', function (req, res, next) {
 });
 
 router.put ('/:id', function (req, res, next) {
-  tture.findByIdAndUpdate(req.params.id, req.body, function (err, fattura) {
+  Fatture.findByIdAndUpdate(req.params.id, req.body, function (err, fattura) {
     if (err) {
       return next(err);
     }
